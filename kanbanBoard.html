@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="kanbanBoard.css">
+</head>
+<body>
+    <h1 class="main-title">ແຜນຜັງການເຮັດວຽກ</h1>
+    <div class="drag-container">
+        <ul class="drag-list">
+
+            <!--category 1-->
+            <li class="drag-column  backlog-column">
+                <span class="header">
+                    <h1>ວຽກຄ້າງ</h1>
+                </span>
+                <div class="custom-scroll" id="backlog-content">
+                    <ul class="drag-item-list" id="backlog-list">
+                        <li class="drag-item" draggable="true">ອອກແບບໂພດຮ້ານຂາຍເຄື່ອງ online</li>
+                        <li class="drag-item" draggable="true">ຈັດສົ່ງ order</li>
+                        <li class="drag-item" draggable="true">ແຕ້ມ Animation</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--category 2-->
+            <li class="drag-column  progress-column">
+                <span class="header">
+                    <h1>ກຳລັງເຮັດ</h1>
+                </span>
+                <div class="custom-scroll" id="progress-content">
+                    <ul class="drag-item-list" id="backlog-list">
+                        <li class="drag-item" draggable="true">ເຮັດ workshop</li>
+                    </ul>
+                </div>
+            </li>
+
+            <!--category 3-->
+            <li class="drag-column  complete-column">
+                <span class="header">
+                    <h1>ສຳເລັດ</h1>
+                </span>
+                <div class="custom-scroll" id="complete-content">
+                    <ul class="drag-item-list" id="complete-list">
+
+                    </ul>
+                </div>
+            </li>
+
+            <!--category 4-->
+            <li class="drag-column  reject-column">
+                <span class="header">
+                    <h1>ບໍ່ຜ່ານ</h1>
+                </span>
+                <div class="custom-scroll" id="reject-content">
+                    <ul class="drag-item-list" id="reject-list">
+                        
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="kanbanBoard.js"></script>
+</body>
+</html>

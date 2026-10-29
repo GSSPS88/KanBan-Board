@@ -1,0 +1,142 @@
+const drag_item = document.querySelectorAll('.drag-item');
+const drag_list = document.querySelectorAll('.drag-item-list');
+
+let selectItem;
+// ລາຍການ
+drag_item.forEach((item)=> {
+    item.addEventListener('dragstart', onDragstart);
+});
+// ໝວດໝູ່
+drag_list.forEach((list) => {
+    list.addEventListener('dragover', onDragOver)
+    list.addEventListener('dragenter', onDragEnter)
+    list.addEventListener('drop', onDrop)
+});
+
+function onDrop () {
+    this.append(selectItem);
+    selectItem = null;
+}
+function onDragstart() {
+    selectItem = this;
+    console.log(selectItem)
+}
+
+function onDragEnter(e) {
+    e.preventDefault();
+}
+function onDragOver(e) {
+    e.preventDefault();
+}
+
+const addItemButton = document.getElementById('add-item');
+const newItemInput = document.getElementById('new-item');
+
+addItemButton.addEventListener('click', () => {
+    const newItemText = newItemInput.value.trim();
+    if (newItemText) {
+        // Create a new div element with class 'drag-item'
+        const newDragItem = document.createElement('div');
+        newDragItem.textContent = newItemText;
+        newDragItem.classList.add('drag-item');
+        newDragItem.setAttribute('draggable', 'true');
+
+        // Add dragstart event listener to the new drag item
+        newDragItem.addEventListener('dragstart', onDragstart);
+
+        // Append the new drag item to the first drag list (or any other list)
+        drag_list[0].appendChild(newDragItem);
+
+        // Clear the input box
+        newItemInput.value = '';
+    }
+});
+
+
+/// remove drag
+const remove = document.getElementById("remove");
+
+remove.addEventListener("click", () => {
+    const drag_item = document.querySelectorAll('.drag-item');
+const drag_list = document.querySelectorAll('.drag-item-list');
+let selectItem;
+
+// Add event listeners to the existing drag items
+drag_item.forEach((item) => {
+    item.addEventListener('dragstart', onDragstart);
+    addDeleteButton(item); // Add delete button to existing items
+});
+
+// Add event listeners to the drag lists
+drag_list.forEach((list) => {
+    list.addEventListener('dragover', onDragOver);
+    list.addEventListener('dragenter', onDragEnter);
+    list.addEventListener('drop', onDrop);
+});
+
+// Function to handle drop event
+function onDrop() {
+    this.append(selectItem);
+    selectItem = null;
+}
+
+// Function to handle drag start event
+function onDragstart() {
+    selectItem = this;
+    console.log(selectItem);
+}
+
+// Function to allow entering the drop area
+function onDragEnter(e) {
+    e.preventDefault();
+}
+
+// Function to allow dragging over the drop area
+function onDragOver(e) {
+    e.preventDefault();
+}
+
+// Add functionality to create new drag-items
+const addButton = document.getElementById('add-item');
+const newInput = document.getElementById('new-item');
+
+addButton.addEventListener('click', () => {
+    const newItemText = newInput.value.trim();
+    if (newItemText) {
+        // Create a new div element with class 'drag-item'
+        const newDragItem = document.createElement('div');
+        newDragItem.textContent = newItemText;
+        newDragItem.classList.add('drag-item');
+        newDragItem.setAttribute('draggable', 'true');
+
+        // Add dragstart event listener to the new drag item
+        newDragItem.addEventListener('dragstart', onDragstart);
+
+        // Add delete button to the new item
+        addDeleteButton(newDragItem);
+
+        // Append the new drag item to the first drag list (or any other list)
+        drag_list[0].appendChild(newDragItem);
+
+        // Clear the input box
+        newInput.value = '';
+    }
+});
+
+// Function to add delete button to a drag-item
+    function addDeleteButton(item) {
+        // Create the delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'X';
+        deleteButton.style.marginLeft = '10px'; // Some space between the item and the button
+        deleteButton.style.cursor = 'pointer';
+
+        // Append the delete button to the drag item
+        item.appendChild(deleteButton);
+
+        // Add click event listener to the delete button
+        deleteButton.addEventListener('click', () => {
+            item.remove(); // Remove the item from the DOM
+        });
+    }
+})

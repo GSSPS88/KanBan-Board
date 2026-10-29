@@ -1,0 +1,55 @@
+const drag_list = document.querySelectorAll('.drag-item-list');
+let selectItem;
+
+// Add drag events to existing drag items
+document.querySelectorAll('.drag-item').forEach(addDragEvents);
+
+// Add drag/drop events to all lists
+drag_list.forEach(list => {
+    list.addEventListener('dragover', e => e.preventDefault());
+    list.addEventListener('dragenter', e => e.preventDefault());
+    list.addEventListener('drop', function () {
+        this.append(selectItem);
+        selectItem = null;
+    });
+});
+
+function addDragEvents(item) {
+    item.setAttribute('draggable', 'true');
+    item.addEventListener('dragstart', function () {
+        selectItem = this;
+    });
+    addDeleteButton(item);
+}
+
+// Add functionality to create new drag items
+document.getElementById('add-item').addEventListener('click', () => {
+    const newItemText = document.getElementById('new-item').value.trim();
+    if (!newItemText) return;
+
+    const newDragItem = document.createElement('div');
+    newDragItem.textContent = newItemText;
+    newDragItem.classList.add('drag-item');
+    drag_list[0].appendChild(newDragItem);
+    addDragEvents(newDragItem);
+
+    document.getElementById('new-item').value = '';
+});
+
+// Function to add delete button to a drag item
+function addDeleteButton(item) {
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'X';
+    deleteButton.classList.add('delete-btn', 'hidden'); // Initially hidden
+    deleteButton.style.marginLeft = '10px';
+    deleteButton.addEventListener('click', () => item.remove());
+    item.appendChild(deleteButton);
+}
+
+// Show/hide delete buttons when the "Remove" button is clicked
+document.getElementById('remove').addEventListener('click', () => {
+    document.querySelectorAll('.delete-btn').forEach(button => {
+        button.classList.toggle('hidden'); // Toggle visibility
+    });
+});
+

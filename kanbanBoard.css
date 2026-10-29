@@ -1,0 +1,133 @@
+@import url('href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@100..900&display=swap"');
+html {
+    box-sizing: border-box;
+}
+
+:root {
+    --category-1: #60367aae;
+    --category-2: #57cef599;
+    --category-3: #67fb509b;
+    --category-4: #ea513da1;
+}
+
+body {
+    margin: 0;
+    background-image: url(img/top-view-laptop-with-graphic-tablet.jpg);
+    background-size: cover;
+    background-position: 50% 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    color: #fff;
+    font-family: "Noto Sans Lao", sans-serif;
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.544);
+}
+
+body * {
+    z-index: 1;
+}
+h1 {
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px black;
+}
+
+.main-title {
+    text-align: center;
+    font-style: 3rem;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.drag-container {
+    margin: 20px;
+}
+
+.drag-list {
+    display: flex;
+    align-items: flex-start;
+}
+
+.drag-column {
+    flex: 1;
+    margin: 0 10px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    overflow: hidden;
+}
+ .header {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+ }
+.backlog-column .header {
+    background-color: var(--category-1);
+}
+
+.progress-column .header {
+    background-color: var(--category-2);
+}
+
+.complete-column .header {
+    background-color: var(--category-3);
+}
+
+.reject-column .header {
+    background-color: var(--category-4);
+}
+
+.custom-scroll {
+    overflow-y: auto;
+    max-height: 52vh;
+}
+
+.drag-item-list {
+    min-height: 10px;
+}
+
+.drag-item {
+    margin: 10px;
+    padding: 10px;
+    height: fit-content;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 3px;
+    line-height: 1.5rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.drag-item:hover {
+    transform: scale(1.1);
+}
+
+.remove {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
